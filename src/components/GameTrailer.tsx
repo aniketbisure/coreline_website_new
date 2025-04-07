@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
 import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
 
 // Dynamically import Three.js components with no SSR
 const ThreeCanvas = dynamic(
@@ -28,34 +29,16 @@ const DynamicSparkles = dynamic(
 );
 
 const ThreeDSceneContent = () => {
-  // Get useFrame from react-three/fiber
-  const { useFrame } = require('@react-three/fiber');
-  
   return (
-    <ThreeCanvas shadows>
+    <Canvas shadows>
       <DynamicPerspectiveCamera makeDefault position={[0, 0, 5]} fov={40} />
       <ambientLight intensity={0.5} />
       <spotLight position={[5, 5, 5]} angle={0.15} penumbra={1} intensity={1} castShadow />
       <spotLight position={[-5, 5, 5]} angle={0.15} penumbra={1} intensity={0.5} castShadow />  
       <DynamicSparkles size={6} scale={[10, 10, 10]} position-y={0} speed={0.3} count={50} opacity={0.5} color="#2563eb" />
       <DynamicEnvironment preset="night" />
-    </ThreeCanvas>
+    </Canvas>
   );
-};
-
-// A wrapper for GameController that includes the useFrame hook
-const GameControllerWithFrame = () => {
-  const { useFrame } = require('@react-three/fiber');
-  const modelRef = useRef<THREE.Group>(null);
-  
-  // Animate the model
-  useFrame((state: any) => {
-    if (modelRef.current) {
-      modelRef.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.3) * 0.2;
-      modelRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.5) * 0.1;
-      modelRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 0.05;
-    }
-  });
 };
 
 // Dynamically import the ThreeDScene component
