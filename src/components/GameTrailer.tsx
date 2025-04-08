@@ -4,15 +4,8 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
-import * as THREE from 'three';
-import { Canvas, useFrame } from '@react-three/fiber';
 
 // Dynamically import Three.js components with no SSR
-const ThreeCanvas = dynamic(
-  () => import('@react-three/fiber').then((mod) => mod.Canvas),
-  { ssr: false }
-);
-
 const DynamicPerspectiveCamera = dynamic(
   () => import('@react-three/drei').then((mod) => mod.PerspectiveCamera),
   { ssr: false }
