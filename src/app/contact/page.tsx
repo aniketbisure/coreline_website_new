@@ -52,32 +52,37 @@ export default function Contact() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-20 pb-12 md:pt-32 md:pb-20 overflow-hidden">
+      <div className="relative w-full overflow-hidden" style={{ height: '50vh' }}>
         {/* Background Animation */}
         <motion.div 
           className="absolute inset-0 z-0"
           initial={{ opacity: 0 }}
-          animate={{ 
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ 
-            repeat: Infinity,
-            duration: 8,
-            ease: "easeInOut" 
-          }}
+          animate={{ opacity: [0.6, 0.6, 0.6] }}
+          transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
         >
-          <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-black/50 to-black"></div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="object-cover w-full h-full"
+          >
+            <source src="/37585-414024825_tiny.mp4" type="video/mp4" />
+          </video>
         </motion.div>
         
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black z-10"></div>
+        
+        {/* Content */}
+        <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 70 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 text-glow"
+              className="text-5xl md:text-7xl font-bold mb-6 text-glow"
               animate={{ 
                 textShadow: [
                   "0 0 10px rgba(37,99,235,0.5)", 
@@ -89,17 +94,17 @@ export default function Contact() {
             >
               Contact <span className="text-primary">Us</span>
             </motion.h1>
+            
             <motion.p 
-              className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8"
+              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
             >
-              Get in touch with our team
             </motion.p>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Contact Form Section */}
       <section className="py-12 md:py-20 bg-[#0a0a0a]">

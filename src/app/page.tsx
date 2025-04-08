@@ -33,9 +33,7 @@ export default function Home() {
       <HeroSection />
       <FeaturedGames />
       <GameTrailer />
-
       <NewsAndCTASection />
-      
       <Footer />
     </main>
   );

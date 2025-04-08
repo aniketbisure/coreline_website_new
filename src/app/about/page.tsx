@@ -24,58 +24,60 @@ export default function AboutUs() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-black/50" />
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              background: 'radial-gradient(circle at center, rgba(255,61,0,0.1) 0%, rgba(0,0,0,0) 70%)',
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 8,
-              ease: "easeInOut"
-            }}
-          />
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+      <div className="relative w-full overflow-hidden" style={{ height: '50vh' }}>
+        {/* Background Animation */}
+        <motion.div 
+          className="absolute inset-0 z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0.6, 0.6, 0.6] }}
+          transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="object-cover w-full h-full"
           >
-            <motion.h1
+            <source src="/37585-414024825_tiny.mp4" type="video/mp4" />
+          </video>
+        </motion.div>
+        
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black z-10"></div>
+        
+        {/* Content */}
+        <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 70 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <motion.h1 
               className="text-5xl md:text-7xl font-bold mb-6 text-glow"
-              animate={{
+              animate={{ 
                 textShadow: [
-                  "0 0 10px rgba(255,61,0,0.5)",
-                  "0 0 20px rgba(255,61,0,0.8)",
-                  "0 0 10px rgba(255,61,0,0.5)"
+                  "0 0 10px rgba(37,99,235,0.5)", 
+                  "0 0 20px rgba(37,99,235,0.8)",
+                  "0 0 10px rgba(37,99,235,0.5)"
                 ]
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               About <span className="text-primary">Us</span>
             </motion.h1>
-            <motion.p
-              className="text-xl text-gray-300 mb-8"
+            
+            <motion.p 
+              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
             >
               The journey behind the gaming revolution
             </motion.p>
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Our Story Section */}
       <section className="py-20 bg-[#0a0a0a] relative overflow-hidden">

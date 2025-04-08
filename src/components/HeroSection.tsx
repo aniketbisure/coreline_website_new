@@ -27,7 +27,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden bg-black" style={{ 
+    <div className="relative w-cover overflow-hidden bg-black" style={{ 
       height: 'calc(100vh)', 
       paddingTop: isScrolled ? '106px' : '126px' // Navbar (70px or 90px) + Banner (36px)
     }}>

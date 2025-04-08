@@ -25,6 +25,7 @@ const Navbar = () => {
     { name: 'About', href: '/about' },
     { name: 'Games', href: '/games' },
     { name: 'Latest Release', href: '/latest-release' },
+    { name: 'Career', href: '/career' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -40,7 +41,7 @@ const Navbar = () => {
       />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex items-center justify-between h-[90px]">
+        <div className="flex items-center justify-between h-[70px]">
           {/* Logo */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -70,8 +71,8 @@ const Navbar = () => {
                   sizes="100vw"
                   priority
                   className={`w-auto transition-all duration-300 ${
-                    isScrolled ? 'h-[40px] sm:h-[45px] md:h-[50px]' : 'h-[50px] sm:h-[55px] md:h-[60px] lg:h-[75px]'
-                  } object-contain -mt-2`}
+                    isScrolled ? 'h-[25px] sm:h-[30px] md:h-[35px]' : 'h-[30px] sm:h-[35px] md:h-[30px] lg:h-[30px]'
+                  } object-contain`}
                 />
               </motion.h1>
             </Link>
