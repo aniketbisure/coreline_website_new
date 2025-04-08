@@ -1,18 +1,14 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Function to play audio
-  const playAudio = useCallback(() => {
+  const playAudio = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.3;
-      audioRef.current.muted = isMuted;
-      
       audioRef.current.play()
         .then(() => {
           setIsPlaying(true);
@@ -21,28 +17,46 @@ const AudioPlayer = () => {
           console.error('Failed to play audio:', err);
         });
     }
-  }, [isMuted]);
+  };
 
-  const pauseAudio = useCallback(() => {
+  const pauseAudio = () => {
     if (audioRef.current) {
       audioRef.current.pause();
       setIsPlaying(false);
     }
-  }, []);
-  
-  // Play audio on component mount
+  };
+
+  // Try to autoplay when component mounts
   useEffect(() => {
     if (audioRef.current) {
-      // Set initial state - unmuted by default
-      audioRef.current.muted = false;
-      setIsMuted(false);
+      // Set volume and try to play immediately
+      audioRef.current.volume = 0.3;
+      const playPromise = audioRef.current.play();
       
-      // Start playing immediately
-      playAudio();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((error) => {
+            console.log('Autoplay prevented:', error);
+            // If autoplay fails, try to play on first interaction
+            const handleFirstInteraction = () => {
+              playAudio();
+              document.removeEventListener('click', handleFirstInteraction);
+              document.removeEventListener('keydown', handleFirstInteraction);
+              document.removeEventListener('touchstart', handleFirstInteraction);
+            };
+            
+            document.addEventListener('click', handleFirstInteraction);
+            document.addEventListener('keydown', handleFirstInteraction);
+            document.addEventListener('touchstart', handleFirstInteraction);
+          });
+      }
     }
-  }, [playAudio]);
+  }, []);
 
-  // Handle tab visibility changes - restart audio if tab becomes visible
+  // Resume playing when tab becomes visible again
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible' && isPlaying) {
@@ -56,15 +70,11 @@ const AudioPlayer = () => {
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [isPlaying, playAudio]);
+  }, [isPlaying]);
 
   const togglePlayPause = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        pauseAudio();
-      } else {
-        playAudio();
-      }
+    if (isPlaying) {
+      pauseAudio();
     }
   };
 
@@ -75,15 +85,12 @@ const AudioPlayer = () => {
         src="/05 Valor - AShamaluevMusic.mp3"
         loop
         preload="auto"
-        playsInline
-        autoPlay
       />
       
-      {/* Play/Pause Button */}
       <button 
         onClick={togglePlayPause}
         className="bg-black/80 hover:bg-black p-3 rounded-full shadow-lg transition-all border border-primary/30 hover:border-primary"
-        title={isPlaying ? "Pause Music" : "Play Music"}
+        title="Pause Music"
       >
         {!isPlaying ? (
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">

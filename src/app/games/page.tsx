@@ -13,28 +13,28 @@ const allGames = [
     id: 5,
     title: "Quantum Drift",
     category: "Puzzle",
-    imageUrl: "/images/game1.jpg", // Reuse assets for placeholder
+    imageUrl: "/image8.jpg", // Reuse assets for placeholder
     rating: 4.6,
   },
   {
     id: 6,
     title: "Mystic Realms",
     category: "Adventure",
-    imageUrl: "/images/game2.jpg",
+    imageUrl: "/image9.jpg",
     rating: 4.4,
   },
   {
     id: 7,
     title: "Tactical Conquest",
     category: "Strategy",
-    imageUrl: "/images/game3.jpg",
+    imageUrl: "/image10.jpg",
     rating: 4.7,
   },
   {
     id: 8,
     title: "Neon Fighters",
     category: "Fighting",
-    imageUrl: "/images/game4.jpg",
+    imageUrl: "/image11.png",
     rating: 4.5,
   },
 ];

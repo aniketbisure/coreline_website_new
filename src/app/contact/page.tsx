@@ -279,9 +279,6 @@ export default function Contact() {
               <div className="mr-3 md:mr-4 text-primary text-xl md:text-2xl">📍</div>
               <div className="text-left">
                 <h3 className="font-bold text-base md:text-lg mb-1">Visit Us</h3>
-                <p className="text-sm md:text-base text-gray-400">
-                  Visit our headquarters in the heart of San Francisco&apos;s tech district
-                </p>
               </div>
             </div>
           </motion.div>
