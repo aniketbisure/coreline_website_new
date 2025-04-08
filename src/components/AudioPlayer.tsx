@@ -76,7 +76,7 @@ const AudioPlayer = () => {
       document.removeEventListener('scroll', handleFirstInteraction);
       document.removeEventListener('mousemove', handleFirstInteraction);
     };
-  }, []);
+  }, [handleFirstInteraction, setupInteractionListeners]);
 
   // Handle tab visibility changes - restart audio if tab becomes visible
   useEffect(() => {
