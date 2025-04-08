@@ -6,7 +6,6 @@ const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [showPlayPrompt, setShowPlayPrompt] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Function to play audio safely after user interaction
@@ -19,12 +18,9 @@ const AudioPlayer = () => {
       audioRef.current.play()
         .then(() => {
           setIsPlaying(true);
-          setShowPlayPrompt(false);
         })
         .catch((err: Error) => {
           console.error('Failed to play audio:', err);
-          // Show minimal prompt if autoplay fails
-          setShowPlayPrompt(true);
         });
     }
   }, [isMuted]);
@@ -56,18 +52,17 @@ const AudioPlayer = () => {
         setIsMuted(false);
         playAudio();
       }
-      setShowPlayPrompt(false);
     }
   };
 
   // Set up handlers for user interactions - moved outside of useEffect for reuse
-  const setupInteractionListeners = () => {
+  const setupInteractionListeners = useCallback(() => {
     document.addEventListener('click', handleFirstInteraction, { once: true });
     document.addEventListener('touchstart', handleFirstInteraction, { once: true });
     document.addEventListener('keydown', handleFirstInteraction, { once: true });
     document.addEventListener('scroll', handleFirstInteraction, { once: true });
     document.addEventListener('mousemove', handleFirstInteraction, { once: true });
-  };
+  }, [handleFirstInteraction]);
 
   // Set up interaction handlers on component mount
   useEffect(() => {
@@ -81,7 +76,7 @@ const AudioPlayer = () => {
       document.removeEventListener('scroll', handleFirstInteraction);
       document.removeEventListener('mousemove', handleFirstInteraction);
     };
-  }, []);
+  }, [handleFirstInteraction, setupInteractionListeners]);
 
   // Handle tab visibility changes - restart audio if tab becomes visible
   useEffect(() => {
