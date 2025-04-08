@@ -44,7 +44,7 @@ const AudioPlayer = () => {
     }
   }, [playAudio]);
   
-  const handleFirstInteraction = () => {
+  const handleFirstInteraction = useCallback(() => {
     if (!hasInteracted) {
       setHasInteracted(true);
       if (audioRef.current) {
@@ -53,7 +53,7 @@ const AudioPlayer = () => {
         playAudio();
       }
     }
-  };
+  }, [hasInteracted, playAudio]);
 
   // Set up handlers for user interactions - moved outside of useEffect for reuse
   const setupInteractionListeners = useCallback(() => {
