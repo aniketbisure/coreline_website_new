@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -162,7 +161,7 @@ const CareerPage = () => {
             Why Work With <span className="text-primary">Us?</span>
           </h2>
           <p className="text-lg max-w-3xl mx-auto text-gray-300">
-            At CoreLine Solutions, we believe that our people are our biggest strength. We're always on the lookout for bright, innovative, and driven individuals to be part of our dynamic team.
+            At CoreLine Solutions, we believe that our people are our biggest strength. We&apos;re always on the lookout for bright, innovative, and driven individuals to be part of our dynamic team.
           </p>
         </motion.div>
 
@@ -258,7 +257,7 @@ const CareerPage = () => {
             Ready to Make a <span className="text-primary">Difference?</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-8 text-gray-300">
-            Apply today and become part of the nucleus where innovation meets opportunity. Let's change businesses together and drive success with technology.
+            Apply today and become part of the nucleus where innovation meets opportunity. Let&apos;s change businesses together and drive success with technology.
           </p>
           <motion.button
             className="px-8 py-3 bg-primary hover:bg-primary-light text-white font-bold rounded-full transition duration-300 ease-in-out"
