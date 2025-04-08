@@ -57,11 +57,12 @@ const AudioPlayer = () => {
 
   // Set up handlers for user interactions - moved outside of useEffect for reuse
   const setupInteractionListeners = useCallback(() => {
-    document.addEventListener('click', handleFirstInteraction, { once: true });
-    document.addEventListener('touchstart', handleFirstInteraction, { once: true });
-    document.addEventListener('keydown', handleFirstInteraction, { once: true });
-    document.addEventListener('scroll', handleFirstInteraction, { once: true });
-    document.addEventListener('mousemove', handleFirstInteraction, { once: true });
+    const options = { once: true };
+    document.addEventListener('click', handleFirstInteraction, options);
+    document.addEventListener('touchstart', handleFirstInteraction, options);
+    document.addEventListener('keydown', handleFirstInteraction, options);
+    document.addEventListener('scroll', handleFirstInteraction, options);
+    document.addEventListener('mousemove', handleFirstInteraction, options);
   }, [handleFirstInteraction]);
 
   // Set up interaction handlers on component mount
@@ -69,13 +70,15 @@ const AudioPlayer = () => {
     setupInteractionListeners();
     
     // Cleanup function
-    return () => {
+    const cleanup = () => {
       document.removeEventListener('click', handleFirstInteraction);
       document.removeEventListener('touchstart', handleFirstInteraction);
       document.removeEventListener('keydown', handleFirstInteraction);
       document.removeEventListener('scroll', handleFirstInteraction);
       document.removeEventListener('mousemove', handleFirstInteraction);
     };
+
+    return cleanup;
   }, [handleFirstInteraction, setupInteractionListeners]);
 
   // Handle tab visibility changes - restart audio if tab becomes visible
