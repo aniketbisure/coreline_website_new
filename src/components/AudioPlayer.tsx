@@ -147,19 +147,6 @@ const AudioPlayer = () => {
           )}
         </button>
       </div>
-
-      {/* Minimal prompt that appears only if autoplay fails */}
-      {showPlayPrompt && !hasInteracted && (
-        <div 
-          onClick={handleFirstInteraction}
-          className="fixed top-4 right-4 bg-black/70 text-white px-3 py-2 rounded-lg shadow-lg z-50 cursor-pointer flex items-center space-x-2 text-sm animate-pulse border border-primary"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.536.464" />
-          </svg>
-          <span>Tap to enable audio</span>
-        </div>
-      )}
     </>
   );
 };
