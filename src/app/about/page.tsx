@@ -73,27 +73,6 @@ export default function AboutUs() {
             >
               The journey behind the gaming revolution
             </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex justify-center gap-4"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-primary/20 text-primary rounded-full border border-primary/30 hover:bg-primary/30 transition-all duration-300"
-              >
-                Our Story
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-all duration-300"
-              >
-                Meet the Team
-              </motion.button>
-            </motion.div>
           </motion.div>
         </div>
       </section>

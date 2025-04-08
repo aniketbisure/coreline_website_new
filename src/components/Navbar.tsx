@@ -68,6 +68,7 @@ const Navbar = () => {
                   width={0}
                   height={0}
                   sizes="100vw"
+                  priority
                   className={`w-auto transition-all duration-300 ${
                     isScrolled ? 'h-[40px] sm:h-[45px] md:h-[50px]' : 'h-[50px] sm:h-[55px] md:h-[60px] lg:h-[75px]'
                   } object-contain -mt-2`}
